@@ -1,0 +1,45 @@
+<div>
+    <div class="jumbotron">
+        <table>
+            <tr>
+                <td align="right">Search :</td>
+                <td><input ng-model="query[queryBy]" /></td>
+            </tr>
+            <tr>
+                <td align="right">Search By :</td>
+                <td>
+                    <select ng-model="queryBy" ng-init="queryBy = 'name'">
+                        <option value="name">Name</option>
+                        <option value="phoneNumber">Number</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <hr>
+        <div>
+            <p>Existing Entries</p>
+
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Number</th>
+                </tr>
+                <tr ng-repeat="entries in numberCtrl.entries | filter:query">
+                    <td>{{entries.name}}</td>
+                    <td>{{entries.phoneNumber}}</td>
+                </tr>
+            </table>
+            <hr>
+            <form>
+                <form name ="form">
+                    First name: <input ng-model="name" type="text" ng-required="true"><br>
+<!--                    TODO add ISO international number validation-->
+                    CellPhone Number: <input ng-model="number"><br>
+                    <input type="submit" ng-click="numberCtrl.addEntry(name,number)" value="Add new entry">
+                </form>
+                <small ng-if="numberCtrl.error" style="color: red">Invalid input</small>
+            </form>
+        </div>
+    </div>
+</div>
